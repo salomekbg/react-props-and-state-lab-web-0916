@@ -3,6 +3,19 @@ const React = require('react');
 class Filters extends React.Component {
   constructor() {
     super();
+
+    this.handleDropDown = this.handleDropDown.bind(this);
+    this.handleFetch = this.handleFetch.bind(this);
+
+  }
+
+  handleDropDown(event) {
+    debugger
+    this.props.onChangeType(event.target.value)
+  }
+
+  handleFetch() {
+    this.props.onFindPetsClick
   }
 
   render() {
@@ -10,7 +23,7 @@ class Filters extends React.Component {
       <div className="ui form">
         <h3>Animal type</h3>
         <div className="field">
-          <select name="type" id="type">
+          <select name="type" id="type" onChange={this.handleDropDown}>
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>
@@ -19,7 +32,7 @@ class Filters extends React.Component {
         </div>
 
         <div className="field">
-          <button className="ui secondary button">Find pets</button>
+          <button className="ui secondary button" onClick={this.handleFetch}>Find pets</button>
         </div>
       </div>
     );
