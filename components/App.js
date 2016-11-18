@@ -1,6 +1,6 @@
 const { getAll } = require('../data/pets');
 const ALL_PETS = getAll();
-const ADOPTED_PETS = [ALL_PETS[0].id];
+const ADOPTED_PETS = [];
 
 const React = require('react');
 
@@ -21,6 +21,7 @@ class App extends React.Component {
     this.state = {
       pets: ALL_PETS,
       adoptedPets: ADOPTED_PETS,
+      filteredPets: ALL_PETS,
       filters: {
         type: 'all'
       }
@@ -34,7 +35,18 @@ class App extends React.Component {
   }
 
   onFindPetsClick() {
-    console.log("fetch")
+    if (this.state.filters.type === 'all') {
+      this.setState({
+        filteredPets: ALL_PETS
+      })
+    } else {
+      this.setState({
+        filteredPets: this.state.pets.filter((pet) => {
+          return pet.type === this.state.filters.type
+        })
+      })
+    }
+    debugger
   }
 
   onChangeType(petType){
@@ -55,7 +67,7 @@ class App extends React.Component {
               <Filters type={this.state.filters} onFindPetsClick={this.onFindPetsClick} onChangeType={this.onChangeType}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.onAdoptPet} />
+              <PetBrowser pets={this.state.filteredPets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.onAdoptPet} />
             </div>
           </div>
         </div>
