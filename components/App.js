@@ -37,8 +37,10 @@ class App extends React.Component {
     console.log("fetch")
   }
 
-  onChangeType(type){
-    console.log(type)
+  onChangeType(petType){
+    this.setState({
+      filters: {type: petType}
+    })
   }
 
   render() {

@@ -10,12 +10,11 @@ class Filters extends React.Component {
   }
 
   handleDropDown(event) {
-    debugger
     this.props.onChangeType(event.target.value)
   }
 
   handleFetch() {
-    this.props.onFindPetsClick
+    this.props.onFindPetsClick()
   }
 
   render() {
