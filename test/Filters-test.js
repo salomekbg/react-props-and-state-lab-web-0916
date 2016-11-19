@@ -12,7 +12,6 @@ describe('<Filters />', function () {
   describe('Animal type', function () {
     it('should set the value of the animal type select to the right filter value', function () {
       const wrapper = shallow(<Filters filters={Object.assign({}, FILTERS_STATE, { type: 'micropig' })}/>);
-      debugger
       expect(wrapper.find('select').props().value).toEqual('micropig');
     });
 
